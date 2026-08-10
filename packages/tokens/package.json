@@ -1,0 +1,34 @@
+{
+  "name": "@travl/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for the Travl design system. Semantic tokens are the public API; primitives are internal.",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "tokens"
+  ],
+  "exports": {
+    "./css/light": "./dist/css/light.css",
+    "./css/dark": "./dist/css/dark.css",
+    "./css": "./dist/css/index.css",
+    "./tailwind": "./dist/tailwind/theme.css",
+    "./tokens/*": "./tokens/*"
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.0"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "dtcg",
+    "css-variables",
+    "tailwind"
+  ]
+}
