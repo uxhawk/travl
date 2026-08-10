@@ -1,6 +1,6 @@
 {
   "name": "@travl/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design tokens for the Travl design system. Semantic tokens are the public API; primitives are internal.",
   "type": "module",
   "license": "MIT",
