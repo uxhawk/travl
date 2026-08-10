@@ -1,0 +1,17 @@
+@layer travl.components {
+  .tv-category-picker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .tv-category-picker__label {
+    color: var(--color-text-primary);
+  }
+
+  .tv-category-picker__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}

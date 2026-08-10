@@ -1,0 +1,38 @@
+@layer travl.components {
+  .tv-day-schedule {
+    --day-schedule-gap: var(--space-5);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--day-schedule-gap);
+  }
+
+  .tv-day-schedule__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block-end: var(--space-2);
+    border-block-end: 1px solid var(--color-border-subtle);
+  }
+
+  .tv-day-schedule__heading {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .tv-day-schedule__title {
+    color: var(--color-text-primary);
+  }
+
+  .tv-day-schedule__summary {
+    color: var(--color-text-muted);
+  }
+
+  .tv-day-schedule__slots {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+}

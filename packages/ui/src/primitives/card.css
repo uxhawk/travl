@@ -1,0 +1,88 @@
+@layer travl.components {
+  .tv-card {
+    --card-bg: var(--color-bg-surface-raised);
+    --card-fg: var(--color-text-primary);
+    --card-border-color: var(--color-border-subtle);
+    --card-border-width: 1px;
+    --card-radius: var(--radius-lg);
+    --card-padding: var(--space-4);
+    --card-gap: var(--space-3);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+    padding: var(--card-padding);
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-radius);
+    background-color: var(--card-bg);
+    color: var(--card-fg);
+  }
+
+  .tv-card--inset {
+    --card-bg: var(--color-bg-inset);
+    --card-border-color: transparent;
+  }
+
+  .tv-card--outline {
+    --card-bg: transparent;
+    --card-border-color: var(--color-border-default);
+  }
+
+  .tv-card--sm {
+    --card-padding: var(--space-3);
+    --card-gap: var(--space-2);
+    --card-radius: var(--radius-md);
+  }
+
+  .tv-card--lg {
+    --card-padding: var(--space-6);
+    --card-gap: var(--space-4);
+    --card-radius: var(--radius-xl);
+  }
+
+  /* Interactive cards are real buttons/links; the whole surface is the
+     target, so the focus ring goes on the card, not an inner element. */
+  .tv-card--interactive {
+    cursor: pointer;
+    text-align: start;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .tv-card--interactive:hover {
+    --card-border-color: var(--color-border-strong);
+  }
+
+  .tv-card--interactive:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+
+  .tv-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .tv-card__title {
+    color: var(--color-text-primary);
+  }
+
+  .tv-card__description {
+    color: var(--color-text-secondary);
+  }
+
+  .tv-card__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tv-card--interactive {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,154 @@
+/**
+ * @travl/ui base layer
+ *
+ * Declares the cascade layers the library uses. Everything @travl/ui ships is
+ * layered, so ANY unlayered rule in a consuming app wins without a specificity
+ * fight — that is the escape hatch that keeps a governed system from becoming
+ * a straitjacket.
+ *
+ * Requires @travl/tokens CSS to be loaded first (it supplies every var below).
+ */
+
+@layer travl.base, travl.components;
+
+@layer travl.base {
+  /* Fallback stacks. The token layer names the family; the system can only
+     promise a shape, not that the webfont loaded. Apps are responsible for
+     loading Bricolage Grotesque / Instrument Sans / Spline Sans Mono — the
+     library never @imports a third-party font on a consumer's behalf. */
+  :where(html) {
+    --tv-fallback-display: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --tv-fallback-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --tv-fallback-data: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  /* Type roles as utilities. Each bundles the five leaves of one semantic
+     role so a caller can never assemble a size/weight pairing the system
+     did not sanction. */
+  .tv-text-display-lg,
+  .tv-text-display-md,
+  .tv-text-display-sm {
+    font-family: var(--tv-role-family), var(--tv-fallback-display);
+    font-size: var(--tv-role-size);
+    line-height: var(--tv-role-leading);
+    font-weight: var(--tv-role-weight);
+    letter-spacing: var(--tv-role-tracking);
+    margin: 0;
+  }
+
+  .tv-text-body-lg,
+  .tv-text-body-md,
+  .tv-text-body-sm,
+  .tv-text-label-lg,
+  .tv-text-label-md,
+  .tv-text-label-sm {
+    font-family: var(--tv-role-family), var(--tv-fallback-body);
+    font-size: var(--tv-role-size);
+    line-height: var(--tv-role-leading);
+    font-weight: var(--tv-role-weight);
+    letter-spacing: var(--tv-role-tracking);
+    margin: 0;
+  }
+
+  .tv-text-data-md,
+  .tv-text-data-sm {
+    font-family: var(--tv-role-family), var(--tv-fallback-data);
+    font-size: var(--tv-role-size);
+    line-height: var(--tv-role-leading);
+    font-weight: var(--tv-role-weight);
+    letter-spacing: var(--tv-role-tracking);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+
+  .tv-text-display-lg {
+    --tv-role-family: var(--text-display-lg-family);
+    --tv-role-size: var(--text-display-lg-size);
+    --tv-role-leading: var(--text-display-lg-leading);
+    --tv-role-weight: var(--text-display-lg-weight);
+    --tv-role-tracking: var(--text-display-lg-tracking);
+  }
+  .tv-text-display-md {
+    --tv-role-family: var(--text-display-md-family);
+    --tv-role-size: var(--text-display-md-size);
+    --tv-role-leading: var(--text-display-md-leading);
+    --tv-role-weight: var(--text-display-md-weight);
+    --tv-role-tracking: var(--text-display-md-tracking);
+  }
+  .tv-text-display-sm {
+    --tv-role-family: var(--text-display-sm-family);
+    --tv-role-size: var(--text-display-sm-size);
+    --tv-role-leading: var(--text-display-sm-leading);
+    --tv-role-weight: var(--text-display-sm-weight);
+    --tv-role-tracking: var(--text-display-sm-tracking);
+  }
+  .tv-text-body-lg {
+    --tv-role-family: var(--text-body-lg-family);
+    --tv-role-size: var(--text-body-lg-size);
+    --tv-role-leading: var(--text-body-lg-leading);
+    --tv-role-weight: var(--text-body-lg-weight);
+    --tv-role-tracking: var(--text-body-lg-tracking);
+  }
+  .tv-text-body-md {
+    --tv-role-family: var(--text-body-md-family);
+    --tv-role-size: var(--text-body-md-size);
+    --tv-role-leading: var(--text-body-md-leading);
+    --tv-role-weight: var(--text-body-md-weight);
+    --tv-role-tracking: var(--text-body-md-tracking);
+  }
+  .tv-text-body-sm {
+    --tv-role-family: var(--text-body-sm-family);
+    --tv-role-size: var(--text-body-sm-size);
+    --tv-role-leading: var(--text-body-sm-leading);
+    --tv-role-weight: var(--text-body-sm-weight);
+    --tv-role-tracking: var(--text-body-sm-tracking);
+  }
+  .tv-text-label-lg {
+    --tv-role-family: var(--text-label-lg-family);
+    --tv-role-size: var(--text-label-lg-size);
+    --tv-role-leading: var(--text-label-lg-leading);
+    --tv-role-weight: var(--text-label-lg-weight);
+    --tv-role-tracking: var(--text-label-lg-tracking);
+  }
+  .tv-text-label-md {
+    --tv-role-family: var(--text-label-md-family);
+    --tv-role-size: var(--text-label-md-size);
+    --tv-role-leading: var(--text-label-md-leading);
+    --tv-role-weight: var(--text-label-md-weight);
+    --tv-role-tracking: var(--text-label-md-tracking);
+  }
+  .tv-text-label-sm {
+    --tv-role-family: var(--text-label-sm-family);
+    --tv-role-size: var(--text-label-sm-size);
+    --tv-role-leading: var(--text-label-sm-leading);
+    --tv-role-weight: var(--text-label-sm-weight);
+    --tv-role-tracking: var(--text-label-sm-tracking);
+  }
+  .tv-text-data-md {
+    --tv-role-family: var(--text-data-md-family);
+    --tv-role-size: var(--text-data-md-size);
+    --tv-role-leading: var(--text-data-md-leading);
+    --tv-role-weight: var(--text-data-md-weight);
+    --tv-role-tracking: var(--text-data-md-tracking);
+  }
+  .tv-text-data-sm {
+    --tv-role-family: var(--text-data-sm-family);
+    --tv-role-size: var(--text-data-sm-size);
+    --tv-role-leading: var(--text-data-sm-leading);
+    --tv-role-weight: var(--text-data-sm-weight);
+    --tv-role-tracking: var(--text-data-sm-tracking);
+  }
+
+  /* Accessible label that stays in the a11y tree. */
+  .tv-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
