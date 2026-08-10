@@ -1,0 +1,28 @@
+/* Tokens are imported the way a consumer imports them. */
+@import '@travl/tokens/css';
+
+/* The base layer is imported explicitly by path rather than through
+   `@travl/ui/styles.css`, for two reasons:
+   1. main.ts aliases the bare specifier `@travl/ui` to source, and Vite
+      aliases match by prefix — `@travl/ui/styles.css` would resolve to
+      `…/src/index.ts/styles.css` and fail.
+   2. The side-effect import in index.ts does NOT survive the production
+      bundle, so without this line the cascade layer order and the type
+      utilities silently vanish from `storybook build` while still working
+      in dev. Component stylesheets still arrive through the module graph. */
+@import '../../../packages/ui/src/styles/base.css';
+
+/* Webfonts are the app's responsibility, never the library's. Storybook is
+   an app, so it loads them here. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Storybook's own canvas padding fights centered layouts at small sizes. */
+.sb-show-main {
+  padding: var(--space-4);
+}

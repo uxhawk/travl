@@ -1,0 +1,140 @@
+@layer travl.components {
+  /**
+   * Component tier. Every value below resolves to a semantic token — no hex,
+   * no px, no primitive references. Variants re-point these props rather than
+   * redeclaring properties, so a new variant is a token swap, not new CSS.
+   */
+  .tv-button {
+    --button-bg: var(--color-action-primary);
+    --button-bg-hover: var(--color-action-primary-hover);
+    --button-bg-active: var(--color-action-primary-active);
+    --button-fg: var(--color-text-on-primary);
+    --button-border-color: transparent;
+    --button-border-width: 1px;
+    --button-radius: var(--radius-md);
+    --button-height: var(--space-10);
+    --button-padding-x: var(--space-4);
+    --button-gap: var(--space-2);
+    --button-focus-ring: var(--color-border-focus);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--button-gap);
+    block-size: var(--button-height);
+    padding-inline: var(--button-padding-x);
+    border: var(--button-border-width) solid var(--button-border-color);
+    border-radius: var(--button-radius);
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard);
+  }
+
+  .tv-button:hover:not(:disabled) {
+    background-color: var(--button-bg-hover);
+  }
+
+  .tv-button:active:not(:disabled) {
+    background-color: var(--button-bg-active);
+    transform: scale(0.98);
+  }
+
+  .tv-button:focus-visible {
+    outline: 2px solid var(--button-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Disabled is deliberately WCAG-exempt: the system signals "inert", and
+     contrast on an inert control would make it read as available. */
+  .tv-button:disabled {
+    --button-bg: var(--color-action-disabled-bg);
+    --button-bg-hover: var(--color-action-disabled-bg);
+    --button-bg-active: var(--color-action-disabled-bg);
+    --button-fg: var(--color-action-disabled-fg);
+    --button-border-color: transparent;
+    cursor: not-allowed;
+  }
+
+  .tv-button > svg {
+    inline-size: 1em;
+    block-size: 1em;
+    flex-shrink: 0;
+  }
+
+  /* --- variant ----------------------------------------------------------- */
+
+  .tv-button--secondary {
+    --button-bg: transparent;
+    --button-bg-hover: var(--color-bg-inset);
+    --button-bg-active: var(--color-bg-inset);
+    --button-fg: var(--color-text-primary);
+    --button-border-color: var(--color-border-default);
+  }
+
+  .tv-button--ghost {
+    --button-bg: transparent;
+    --button-bg-hover: var(--color-bg-inset);
+    --button-bg-active: var(--color-bg-inset);
+    --button-fg: var(--color-text-secondary);
+    --button-border-color: transparent;
+  }
+
+  .tv-button--accent {
+    --button-bg: var(--color-action-accent);
+    --button-bg-hover: var(--color-action-accent);
+    --button-bg-active: var(--color-action-accent);
+    --button-fg: var(--color-text-on-accent);
+  }
+
+  .tv-button--destructive {
+    --button-bg: var(--color-action-destructive);
+    --button-bg-hover: var(--color-action-destructive-hover);
+    --button-bg-active: var(--color-action-destructive-hover);
+    --button-fg: var(--color-text-on-destructive);
+  }
+
+  /* --- size -------------------------------------------------------------- */
+
+  .tv-button--sm {
+    --button-height: var(--space-8);
+    --button-padding-x: var(--space-3);
+    --button-gap: var(--space-1);
+    --button-radius: var(--radius-sm);
+  }
+
+  .tv-button--lg {
+    --button-height: var(--space-12);
+    --button-padding-x: var(--space-6);
+    --button-gap: var(--space-3);
+    --button-radius: var(--radius-lg);
+  }
+
+  /* --- modifiers --------------------------------------------------------- */
+
+  .tv-button--full-width {
+    inline-size: 100%;
+  }
+
+  /* Square footprint; the accessible name comes from aria-label, enforced by
+     the ButtonProps type. */
+  .tv-button--icon-only {
+    --button-padding-x: var(--space-0);
+    inline-size: var(--button-height);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tv-button {
+      transition: none;
+    }
+    .tv-button:active:not(:disabled) {
+      transform: none;
+    }
+  }
+}

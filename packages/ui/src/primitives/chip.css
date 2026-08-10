@@ -1,0 +1,116 @@
+@layer travl.components {
+  .tv-chip {
+    --chip-bg: var(--color-bg-inset);
+    --chip-fg: var(--color-text-secondary);
+    --chip-border-color: transparent;
+    --chip-radius: var(--radius-full);
+    --chip-height: var(--space-6);
+    --chip-padding-x: var(--space-3);
+    --chip-gap: var(--space-1);
+    --chip-dot-size: var(--space-2);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--chip-gap);
+    block-size: var(--chip-height);
+    padding-inline: var(--chip-padding-x);
+    border: 1px solid var(--chip-border-color);
+    border-radius: var(--chip-radius);
+    background-color: var(--chip-bg);
+    color: var(--chip-fg);
+    white-space: nowrap;
+  }
+
+  .tv-chip__dot {
+    inline-size: var(--chip-dot-size);
+    block-size: var(--chip-dot-size);
+    border-radius: var(--radius-full);
+    background-color: var(--chip-dot-color, currentColor);
+    flex-shrink: 0;
+  }
+
+  /* --- category ----------------------------------------------------------
+     Six categories, each bound to its own token family. The 1:1 mapping is
+     what lets a category be added by adding tokens, not by editing CSS
+     logic. `on-soft` foregrounds are contrast-verified against `soft` in
+     both themes by scripts/verify-contrast.py. */
+
+  .tv-chip--dining {
+    --chip-bg: var(--color-category-dining-soft);
+    --chip-fg: var(--color-category-dining-on-soft);
+    --chip-dot-color: var(--color-category-dining-solid);
+  }
+  .tv-chip--coffee {
+    --chip-bg: var(--color-category-coffee-soft);
+    --chip-fg: var(--color-category-coffee-on-soft);
+    --chip-dot-color: var(--color-category-coffee-solid);
+  }
+  .tv-chip--outdoors {
+    --chip-bg: var(--color-category-outdoors-soft);
+    --chip-fg: var(--color-category-outdoors-on-soft);
+    --chip-dot-color: var(--color-category-outdoors-solid);
+  }
+  .tv-chip--shopping {
+    --chip-bg: var(--color-category-shopping-soft);
+    --chip-fg: var(--color-category-shopping-on-soft);
+    --chip-dot-color: var(--color-category-shopping-solid);
+  }
+  .tv-chip--museums {
+    --chip-bg: var(--color-category-museums-soft);
+    --chip-fg: var(--color-category-museums-on-soft);
+    --chip-dot-color: var(--color-category-museums-solid);
+  }
+  .tv-chip--concerts {
+    --chip-bg: var(--color-category-concerts-soft);
+    --chip-fg: var(--color-category-concerts-on-soft);
+    --chip-dot-color: var(--color-category-concerts-solid);
+  }
+
+  /* --- size --------------------------------------------------------------- */
+
+  .tv-chip--sm {
+    --chip-height: var(--space-5);
+    --chip-padding-x: var(--space-2);
+    --chip-dot-size: var(--space-1);
+  }
+
+  /* --- selectable --------------------------------------------------------
+     A chip that is a real control (category picker). Unselected chips read
+     as neutral; selection is carried by the category color AND a ring, so
+     the state does not rely on hue alone. */
+
+  .tv-chip--selectable {
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    --chip-border-color: var(--color-border-default);
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
+  }
+
+  .tv-chip--selectable:hover {
+    background-color: var(--color-bg-inset);
+  }
+
+  .tv-chip--selectable:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+
+  /* Toggle chips use aria-pressed; single-select chips inside a radiogroup
+     use aria-checked. Both are "on". */
+  .tv-chip--selectable[aria-pressed='true'],
+  .tv-chip--selectable[aria-checked='true'] {
+    background-color: var(--chip-bg);
+    color: var(--chip-fg);
+    --chip-border-color: var(--chip-dot-color);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tv-chip--selectable {
+      transition: none;
+    }
+  }
+}

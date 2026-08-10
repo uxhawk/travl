@@ -1,0 +1,57 @@
+/**
+ * Layer order is declared up front, before any import, because the first
+ * declaration wins and a later layer beats an earlier one no matter how
+ * specific the earlier selector was.
+ *
+ * The order matters in both directions:
+ *   theme, base      — Tailwind's preflight resets FIRST, so its
+ *                      `button { background: transparent }` cannot wipe out
+ *                      a component's own background.
+ *   travl.*          — @travl/ui styles on top of a reset baseline.
+ *   components,
+ *   utilities        — Tailwind utilities LAST, so `<Button className="w-full">`
+ *                      wins the way anyone would expect.
+ *
+ * Get this backwards and the failure is silent: either buttons render
+ * unstyled, or every utility passed through className is quietly ignored.
+ */
+@layer theme, base, travl.base, travl.components, components, utilities;
+
+/* Runtime token variables (unlayered — they are the app's ground truth). */
+@import '@travl/tokens/css';
+
+@import 'tailwindcss';
+
+/* Maps the tokens onto Tailwind namespaces: bg-bg-surface, text-text-muted,
+   p-4 from --spacing-*, rounded-lg, text-display-md. */
+@import '@travl/tokens/tailwind';
+
+/* The component library's stylesheet. */
+@import '@travl/ui/styles.css';
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect the same motion contract the component library honours. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

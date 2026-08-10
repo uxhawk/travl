@@ -15,6 +15,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      - run: pnpm typecheck
       # Accessibility as a build-time contract: fails the PR if any
-      # semantic pairing drops below WCAG AA.
-      # - run: python3 scripts/verify-contrast.py
+      # semantic pairing drops below its WCAG 2.2 threshold. Runs after
+      # build because it reads the built CSS, not the DTCG source.
+      - run: python3 scripts/verify-contrast.py

@@ -1,0 +1,97 @@
+@layer travl.components {
+  .tv-stepper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .tv-stepper__label {
+    color: var(--color-text-primary);
+  }
+
+  .tv-stepper__control {
+    --stepper-bg: var(--color-bg-base);
+    --stepper-border-color: var(--color-border-default);
+    --stepper-radius: var(--radius-md);
+    --stepper-height: var(--space-10);
+
+    display: inline-flex;
+    align-items: center;
+    block-size: var(--stepper-height);
+    border: 1px solid var(--stepper-border-color);
+    border-radius: var(--stepper-radius);
+    background-color: var(--stepper-bg);
+    inline-size: fit-content;
+  }
+
+  .tv-stepper__control:focus-within {
+    --stepper-border-color: var(--color-border-focus);
+  }
+
+  .tv-stepper__button {
+    --stepper-button-fg: var(--color-text-primary);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--stepper-height);
+    block-size: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--stepper-button-fg);
+    cursor: pointer;
+    border-radius: inherit;
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .tv-stepper__button:hover:not(:disabled) {
+    background-color: var(--color-bg-inset);
+  }
+
+  .tv-stepper__button:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: -2px;
+  }
+
+  .tv-stepper__button:disabled {
+    --stepper-button-fg: var(--color-action-disabled-fg);
+    cursor: not-allowed;
+  }
+
+  /* The value is numeric data, so it uses the data type role (Spline Sans
+     Mono, tabular figures) — the digits must not reflow as the count
+     changes. */
+  .tv-stepper__value {
+    min-inline-size: var(--space-10);
+    text-align: center;
+    color: var(--color-text-primary);
+    border: 0;
+    background: transparent;
+    padding-inline: var(--space-1);
+    /* Native spinners duplicate the buttons we already provide. */
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  .tv-stepper__value::-webkit-outer-spin-button,
+  .tv-stepper__value::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  .tv-stepper__value:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .tv-stepper__hint {
+    color: var(--color-text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tv-stepper__button {
+      transition: none;
+    }
+  }
+}

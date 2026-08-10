@@ -1,0 +1,81 @@
+@layer travl.components {
+  .tv-activity-card {
+    --activity-card-padding: var(--space-3);
+    --activity-card-gap: var(--space-2);
+    --activity-card-accent: var(--color-border-subtle);
+    --activity-card-accent-width: var(--space-1);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--activity-card-gap);
+    padding: var(--activity-card-padding);
+    padding-inline-start: calc(var(--activity-card-padding) + var(--activity-card-accent-width));
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-surface-raised);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Category is carried by the chip (text + dot) and echoed by this rail.
+     The rail is decoration — removing it loses no information. */
+  .tv-activity-card::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--activity-card-accent-width);
+    background-color: var(--activity-card-accent);
+  }
+
+  .tv-activity-card--dining {
+    --activity-card-accent: var(--color-category-dining-solid);
+  }
+  .tv-activity-card--coffee {
+    --activity-card-accent: var(--color-category-coffee-solid);
+  }
+  .tv-activity-card--outdoors {
+    --activity-card-accent: var(--color-category-outdoors-solid);
+  }
+  .tv-activity-card--shopping {
+    --activity-card-accent: var(--color-category-shopping-solid);
+  }
+  .tv-activity-card--museums {
+    --activity-card-accent: var(--color-category-museums-solid);
+  }
+  .tv-activity-card--concerts {
+    --activity-card-accent: var(--color-category-concerts-solid);
+  }
+
+  .tv-activity-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  .tv-activity-card__title {
+    color: var(--color-text-primary);
+    overflow-wrap: anywhere;
+  }
+
+  .tv-activity-card__note {
+    color: var(--color-text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .tv-activity-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .tv-activity-card__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    flex-shrink: 0;
+  }
+}
