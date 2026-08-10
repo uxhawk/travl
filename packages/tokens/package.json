@@ -4,6 +4,11 @@
   "description": "Design tokens for the Travl design system. Semantic tokens are the public API; primitives are internal.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uxhawk/travl.git",
+    "directory": "packages/tokens"
+  },
   "files": [
     "dist",
     "tokens"
